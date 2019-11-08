@@ -1,0 +1,10 @@
+{
+  "name": "speedom",
+  "version": "1.0.0",
+  "description": "PWA speedometer",
+  "main": "index.js",
+  "repository": "https://github.com/brennankreiman/speedom",
+  "author": "Brennan Kreiman",
+  "license": "MIT",
+  "dependencies": {}
+}

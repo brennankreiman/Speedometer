@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedOM</title>
+    <meta name="description" content="Speedometer">
+    <meta name="theme-color" content="#f1f1f1">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <header class="header"></header>
+    <div class="readout">
+        <p id="readout">...</p>
+        <p id="units">MPH</p>
+    </div>
+    <div class="buttons-row">
+      <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">mi/h</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">km/h</button>
+    </div>
+    <div class="buttons">
+      <button id="toggle" onclick="toggleClick()" class="button">🔑 Start</button>
+    </div>
+    <footer class="footer"></footer>
+  </body>
+  <script src="index.js"></script>
+</html>
