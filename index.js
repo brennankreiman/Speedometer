@@ -48,7 +48,7 @@ const calcSpeed = (position) => {
 };
 
 const startServiceWorker = () => {
-  navigator.serviceWorker.register('service-worker.js', {
+  navigator.serviceWorker.register('serviceWorker.js', {
     scope: './'
   });
 }

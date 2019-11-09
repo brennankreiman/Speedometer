@@ -1,0 +1,14 @@
+{
+  "name": "SpeedOM",
+  "short_name": "SpeedOM",
+  "description": "Speedometer PWA with Max speed.",
+  "start_url": "/",
+  "theme_color": "#7FFFD4",
+  "background_color": "#708090",
+  "icons": [{
+    "src": "/images/meter.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "display": "standalone"
+}

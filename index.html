@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpeedOM</title>
+    <title>SpeedOM PWA</title>
     <meta name="description" content="Speedometer">
-    <meta name="theme-color" content="#f1f1f1">
+    <meta name="theme-color" content="#7FFFD4">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
@@ -17,7 +18,7 @@
         <p id="units">MPH</p>
     </div>
     <div class="buttons-row">
-      <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">mi/h</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">km/h</button>
+      <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">MPH</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">KPH</button>
     </div>
     <div class="buttons">
       <button id="toggle" onclick="toggleClick()" class="button">🔑 Start</button>
