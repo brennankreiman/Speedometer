@@ -3,8 +3,9 @@ const units = {
   kmh: 3.6
 }
 const options = {
-  navigator: '',
-  speedUnit: units.mph
+  watchId: '',
+  speedUnit: units.mph,
+  max: 0
 }
 const ui = {
   body: document.querySelector('body'),
@@ -13,21 +14,22 @@ const ui = {
   units: document.querySelector('#units'),
   mph: document.querySelector('#mph'),
   kph: document.querySelector('#kph'),
+  max: document.querySelector('#max'),
 }
 
 const toggleClick = () => {
-  if (options.navigator) {
+  if (options.watchId) {
     navigator.geolocation.clearWatch(options.navigator);
-    options.navigator = null;
+    options.watchId = null;
+    ui.readout.textContent = '...';
     ui.toggle.textContent = '🔑 Start';
   } else {
     const settings = {
       enableHighAccuracy: true
     };
-    options.navigator = navigator.geolocation.watchPosition(calcSpeed,
+    options.watchId = navigator.geolocation.watchPosition(calcSpeed,
       null, settings);
       ui.toggle.textContent = '🛑 Stop';
-
   }
 }
 const toggleUnits = (unit) => {
@@ -39,6 +41,10 @@ const toggleUnits = (unit) => {
 }
 const calcSpeed = (position) => {
   ui.readout.textContent = Math.round(position.coords.speed * options.speedUnit);
+  if (position.coords.speed > options.max) {
+    options.max = position.coords.speed;
+  }
+  ui.max.textContent = Math.round(options.max * options.speedUnit);
 };
 
 const startServiceWorker = () => {
