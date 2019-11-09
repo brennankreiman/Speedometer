@@ -19,7 +19,7 @@ const ui = {
 
 const toggleClick = () => {
   if (options.watchId) {
-    navigator.geolocation.clearWatch(options.navigator);
+    navigator.geolocation.clearWatch(options.watchId);
     options.watchId = null;
     ui.readout.textContent = '...';
     ui.toggle.textContent = '🔑 Start';
