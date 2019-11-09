@@ -62,10 +62,9 @@ body > * {
 
 .readout p {
   color: aquamarine;
-  font-size: 36px;
+  font-size: 26px;
 }
 
 #readout {
-  font-size: 100px;
-
+  font-size: 50px;
 }
