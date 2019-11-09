@@ -5,9 +5,8 @@ body {
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  width: 100%;
   flex-flow: row wrap;
-  background-color: DimGrey;
+  background-color: LightSlateGrey;
 }
 
 body > * {
@@ -26,6 +25,7 @@ body > * {
   border: 1px #ccc;
   padding: 1em 2em;
   font-size: 24px;
+  background-color: linen;
 }
 
 .buttons-row {
@@ -37,6 +37,7 @@ body > * {
 .button-toggle {
   border: 1px #ccc;
   font-size: 24px;
+  background-color: linen;
 }
 
 .left {
@@ -48,8 +49,8 @@ body > * {
 }
 
 .active {
-  background-color: grey;
-  color: white;
+  background-color: LightGreen;
+  color: black;
 }
 
 .readout {
