@@ -21,20 +21,27 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <header class="header"></header>
+    <header class="header" style="display:none;">
+      <ul class="nav">
+          <li><a href="#settings">Settings</a></li>
+          <li><a href="#about">About</a></li>
+      </ul>
+      <a href="javascript:void(0);" class="icon">≡</a>
+    </header>
+    <div class="stats">
+      <p>Max Speed</p>
+      <p id="max">...</p>
+    </div>
     <div class="readout">
-        <p>Max Speed</p>
-        <p id="max">...</p>
         <p id="readout">...</p>
         <p id="units">MPH</p>
     </div>
-    <div class="buttons-row">
-      <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">MPH</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">KPH</button>
-    </div>
     <div class="buttons">
-      <button id="toggle" onclick="toggleClick()" class="button">🔑 Start</button>
+      <div class="buttons-row">
+        <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">MPH</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">KPH</button>
+      </div>
+      <button id="toggle" onclick="toggleClick()" class="button start">🔑 Start</button>
     </div>
-    <footer class="footer"></footer>
   </body>
   <script src="index.js"></script>
 </html>

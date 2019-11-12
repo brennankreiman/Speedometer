@@ -1,33 +1,69 @@
 body {
+  background: radial-gradient(ellipse at center, white 40%, lightgrey 100%);
+  height: 100vh;
+}
+body {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  justify-content: flex-start;
+  align-items: stretch;
   flex-direction: column;
-  flex-flow: row wrap;
-  background-color: SlateGrey;
+  margin: 0;
 }
-
+body .ivory {
+  background: radial-gradient(ellipse at center, Ivory 30%, LavenderBlush 100%);
+  color: Indigo;
+}
 body > * {
   flex: 1 100%;
   text-align: center;
 }
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+ul {
+  list-style-type: none;
 }
+/* Header and nav bar */
+
+.header,
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.header {
+  margin: 0px;
+  background-color: #333;
+  max-height: 6vh;
+}
+
+.header a {
+  color: Ivory;
+  text-decoration: none;
+  padding: 1em 1.5em;
+}
+
+
+/* Buttons */
+
 .button {
   border-radius: 10px;
   border: 1px #ccc;
+  margin: 1em 0.5em;
   padding: 1em 2em;
   font-size: 24px;
-  background-color: linen;
+  max-width: 400px;
+}
+.start {
+  background-color: aquamarine;
 }
 
+.stop {
+  background-color: tomato;
+  color: Ivory;
+}
+.buttons {
+  margin-bottom: 0;
+}
 .buttons-row {
   display: flex;
   flex-direction: row;
@@ -37,7 +73,6 @@ body > * {
 .button-toggle {
   border: 1px #ccc;
   font-size: 24px;
-  background-color: linen;
 }
 
 .left {
@@ -50,21 +85,16 @@ body > * {
 
 .active {
   background-color: aquamarine;
-  color: black;
 }
-
+.stats,
 .readout {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 60vh;
-  background-color: LightSlateGrey;
 }
 
 .readout p {
-  color: aquamarine;
-  font-size: 21px;
-  padding-bottom: 0.5em;
+  font-size: 46px;
+  padding-bottom: 0.25em;
 }

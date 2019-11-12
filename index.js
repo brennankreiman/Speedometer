@@ -28,13 +28,15 @@ const toggleClick = () => {
 
     ui.readout.textContent = '...';
     ui.toggle.textContent = '🔑 Start';
+    ui.toggle.classList = 'button start';
   } else {
     const settings = {
       enableHighAccuracy: true
     };
-    options.watchId = navigator.geolocation.watchPosition(calcSpeed,
+    options.watchId = navigator.geolocation.watchPosition(watchPosition,
       null, settings);
       startWakeLock();
+      ui.toggle.classList = 'button stop';
       ui.toggle.textContent = '🛑 Stop';
   }
 }
@@ -55,7 +57,7 @@ const startWakeLock = () => {
   }
 }
 
-const calcSpeed = (position) => {
+const watchPosition = (position) => {
   ui.readout.textContent = Math.round(position.coords.speed * options.speedUnit);
   if (position.coords.speed > options.max) {
     options.max = position.coords.speed;
