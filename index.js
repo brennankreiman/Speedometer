@@ -73,7 +73,7 @@ const toggleUnits = (unit) => {
     if (options.distance > 0) {
         let units = (unit == 'mph' ? 'miles' : 'kilometers' );
         options.distance = turf.length(route, {units: units});
-        ui.distance.textContent = options.distance;
+        ui.distance.textContent = options.distance.toFixed(2);
     }
   }
 }
@@ -98,7 +98,7 @@ const watchPosition = (position) => {
   route.coordinates.push([position.coords.longitude.toFixed(8), position.coords.latitude.toFixed(8)]);
   let units = (ui.mph.classList.contains('active') ? 'miles' : 'kilometers' );
   options.distance = turf.length(route, {units: units});
-  ui.distance.textContent = options.distance;
+  ui.distance.textContent = options.distance.toFixed(2);
 };
 
 const startServiceWorker = () => {
