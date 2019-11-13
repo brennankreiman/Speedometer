@@ -52,7 +52,8 @@ ul {
   border-radius: 10px;
   border: 1px #ccc;
   margin: 1em 0.5em;
-  padding: 1em 2em;
+  flex-shrink: 0;
+  padding: 1em 5em;
   font-size: 24px;
   max-width: 400px;
 }
@@ -70,12 +71,14 @@ ul {
 }
 .buttons-row {
   display: flex;
+  flex-shrink: 0;
   flex-direction: row;
   justify-content: center;
 }
 .button-toggle {
   border: 1px #ccc;
   font-size: 24px;
+  overflow: visible;
 }
 
 .left {
