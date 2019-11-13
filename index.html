@@ -20,17 +20,19 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon-180x180.png" />
     <link rel="stylesheet" href="index.css">
   </head>
-  <body>
-    <header class="header" style="display:none;">
-      <ul class="nav">
-          <li><a href="#settings">Settings</a></li>
-          <li><a href="#about">About</a></li>
-      </ul>
-      <a id="mobile-menu" class="icon">≡</a>
+  <body class="ivory">
+    <header class="header">
+      <button onclick="openNav()" id="mobile-menu" class="icon">≡</button>
     </header>
     <div class="stats">
-      <span>Max Speed</span>
-      <span id="max">...</span>
+      <div class="stat">
+          <p>Distance</p>
+          <p id="distance">...</p>
+      </div>
+      <div class="stat">
+          <p>Max Speed</p>
+          <p id="max">...</p>
+      </div>
     </div>
     <div class="readout">
         <p id="readout">...</p>
@@ -42,6 +44,23 @@
       </div>
       <button id="toggle" onclick="toggleClick()" class="button start">🔑 Start</button>
     </div>
+    <div id="nav-menu" class="overlay">
+
+  <!-- Button to close the overlay navigation -->
+  <a class="closebtn" onclick="closeNav()">&times;</a>
+
+  <!-- Overlay content -->
+  <div class="overlay-content">
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <br>
+    <br>
+    <br>
+    <a onclick="resetStats()">Reset Stats</a>
+  </div>
+
+</div>
   </body>
   <script src="index.js"></script>
+  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 </html>
