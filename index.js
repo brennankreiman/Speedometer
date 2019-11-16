@@ -57,7 +57,6 @@ const toggleClick = () => {
     if (options.wakeLock) {
       options.wakeLock.cancel();
     }
-    resetStats();
     ui.toggle.textContent = '🔑 Start';
     ui.toggle.classList = 'button start';
   } else {
