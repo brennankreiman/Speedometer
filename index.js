@@ -3,6 +3,8 @@ const units = {
   kph: 3.6
 }
 const options = {
+  center: [],
+  map: '',
   wakeLock: null,
   watchId: null,
   speedUnit: units.mph,
@@ -18,7 +20,10 @@ const route =  {
     }
 };
 
-
+const setCenter = (position) => {
+    options.center = [position.coords.latitude.toFixed(6), position.coords.longitude.toFixed(6)];
+    document.querySelector('#view-route').style.display = 'block';
+}
 const avgArray = [];
 const ui = {
   body: document.querySelector('body'),
@@ -34,10 +39,18 @@ const ui = {
 
 const openNav = () => {
   document.getElementById("nav-menu").style.width = "100%";
+  navigator.geolocation.getCurrentPosition(setCenter);
 };
 
 const closeNav = () => {
   document.getElementById("nav-menu").style.width = "0%";
+  document.getElementById("map").style.display = "none";
+  document.getElementById("menu-content").style.display = "block";
+  if(options.map != null) {
+      options.map.remove();
+      options.map = null;
+
+  }
 };
 
 const resetStats = () => {
@@ -57,7 +70,7 @@ const toggleClick = () => {
     if (options.wakeLock) {
       options.wakeLock.cancel();
     }
-    ui.toggle.textContent = '🔑 Start';
+    ui.toggle.textContent = 'Start';
     ui.toggle.classList = 'button start';
   } else {
         if ("geolocation" in navigator) {
@@ -68,7 +81,7 @@ const toggleClick = () => {
               error, settings);
               startWakeLock();
               ui.toggle.classList = 'button stop';
-              ui.toggle.textContent = '🛑 Stop';
+              ui.toggle.textContent = 'Stop';
         } else {
             ui.toggle.classList = 'button stop';
             ui.toggle.textContent = 'Position not Available';
@@ -97,7 +110,7 @@ const toggleUnits = (unit) => {
         ui.distance.textContent = options.distance.toFixed(2);
     }
     if (options.avg > 0) {
-        options.avg = avgArray.reduce((a, b) => a + b, 0) * options.speedUnit;
+        ui.avg.textContent = (options.avg  * options.speedUnit).toFixed(2);
     }
   }
 }
@@ -119,8 +132,8 @@ const watchPosition = (position) => {
     ui.max.textContent = Math.round(options.max * options.speedUnit);
   }
   avgArray.push(position.coords.speed);
-  options.avg = avgArray.reduce((a, b) => a + b, 0) * options.speedUnit;
-//  console.log([position.coords.longitude.toFixed(6), position.coords.latitude.toFixed(6)]);
+  options.avg = avgArray.reduce((a, b) => a + b, 0);
+
   if (
         (
             typeof route.geometry.coordinates[route.geometry.coordinates.length-1] == typeof undefined
@@ -131,13 +144,30 @@ const watchPosition = (position) => {
             && route.geometry.coordinates[route.geometry.coordinates.length-1][1] !== position.coords.latitude.toFixed(6)
         )
     ) {
-      route.geometry.coordinates.push([position.coords.longitude.toFixed(6), position.coords.latitude.toFixed(6)]);
+      route.geometry.coordinates.push([position.coords.latitude.toFixed(6), position.coords.longitude.toFixed(6)]);
   }
   let units = (ui.mph.classList.contains('active') ? 'miles' : 'kilometers' );
   options.distance = turf.length(route, {units: units});
   ui.distance.textContent = options.distance.toFixed(2);
-  ui.avg.textContent = options.avg.toFixed(2);
+  ui.avg.textContent = (options.avg  * options.speedUnit).toFixed(2);
 };
+const showMap = () => {
+    let menu = document.querySelector('#menu-content');
+    let mapEl = document.querySelector('#map');
+    mapEl.style.display = 'block';
+    menu.style.display = 'none';
+    if (!options.map) {
+        options.map = L.map('map').setView(options.center, 13);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY29nd29ybGRtYXAiLCJhIjoiN3Vmb1FXTSJ9.HDCxpYrUAFQoc6u8sY-Hnw', {
+                maxZoom: 18,
+                attribution: ' <div  class="attr">Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a></div>',
+                id: 'mapbox.light'
+            }).addTo(options.map);
+        L.geoJSON(route).addTo(options.map);
+    }
+}
 
 const startServiceWorker = () => {
   navigator.serviceWorker.register('serviceWorker.js', {

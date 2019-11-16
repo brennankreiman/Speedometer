@@ -43,27 +43,27 @@
         <p id="units">MPH</p>
     </div>
     <div class="buttons">
-      <button id="toggle" onclick="toggleClick()" class="button start">🔑 Start</button>
+      <button id="toggle" onclick="toggleClick()" class="button start">Start</button>
     </div>
     <div id="nav-menu" class="overlay">
-
-  <!-- Button to close the overlay navigation -->
-  <a class="closebtn" onclick="closeNav()">&times;</a>
-
-  <!-- Overlay content -->
-  <div class="overlay-content">
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-    <br>
-    <div class="buttons-row">
-      <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">MPH</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">KPH</button>
-    </div>
-    <br>
-    <a onclick="resetStats()">Reset Stats</a>
+        <!-- Button to close the overlay navigation -->
+        <a style="color:grey;"class="closebtn" onclick="closeNav()">&times;</a>
+        <div id='map' style="display:none;"></div>
+        <!-- Overlay content -->
+        <div class="overlay-content">
+      <div id='menu-content'>
+          <div class="buttons-row">
+            <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">MPH</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">KPH</button>
+          </div>
+          <br>
+          <a onclick="resetStats()">Reset Stats</a>
+          <a id="view-route" onclick="showMap()" style="display:none;">View Route</a>
+      </div>
   </div>
-
-</div>
+    </div>
   </body>
   <script src="index.js"></script>
   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
 </html>
