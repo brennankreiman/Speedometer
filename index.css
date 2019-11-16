@@ -126,6 +126,9 @@ ul {
     width: 100%;
     height: 100vh;
 }
+#map a {
+    font-size: 8px;
+}
 
 .overlay {
   height: 100%;
@@ -157,7 +160,7 @@ ul {
   transition: 0.3s; /* Transition effects on hover (color) */
 }
 
-.overlay a:hover, .overlay a:focus {
+.overlay-content a:hover, .overlay a:focus {
   color: #f1f1f1;
 }
 
