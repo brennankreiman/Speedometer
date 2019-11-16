@@ -10,10 +10,15 @@ const options = {
   avg: 0,
   distance: 0,
 }
-const route = {
-    "type": "LineString",
-    "coordinates": []
+const route =  {
+    "type": "Feature",
+    "geometry": {
+        "type": "LineString",
+        "coordinates": []
+    }
 };
+
+
 const avgArray = [];
 const ui = {
   body: document.querySelector('body'),
@@ -43,7 +48,7 @@ const resetStats = () => {
     ui.max.textContent = '...';
     ui.avg.textContent = '...';
     ui.readout.textContent = '...';
-    route.coordinates = [];
+    route.geometry.coordinates = [];
 };
 const toggleClick = () => {
   if (options.watchId) {
@@ -116,8 +121,19 @@ const watchPosition = (position) => {
   }
   avgArray.push(position.coords.speed);
   options.avg = avgArray.reduce((a, b) => a + b, 0) * options.speedUnit;
-  // 6 units of prercision is all that is needed for GPS, anything more is down to mm
-  route.coordinates.push([position.coords.longitude.toFixed(8), position.coords.latitude.toFixed(8)]);
+//  console.log([position.coords.longitude.toFixed(6), position.coords.latitude.toFixed(6)]);
+  if (
+        (
+            typeof route.geometry.coordinates[route.geometry.coordinates.length-1] == typeof undefined
+        )
+        ||
+        (
+            route.geometry.coordinates[route.geometry.coordinates.length-1][0] !== position.coords.longitude.toFixed(6)
+            && route.geometry.coordinates[route.geometry.coordinates.length-1][1] !== position.coords.latitude.toFixed(6)
+        )
+    ) {
+      route.geometry.coordinates.push([position.coords.longitude.toFixed(6), position.coords.latitude.toFixed(6)]);
+  }
   let units = (ui.mph.classList.contains('active') ? 'miles' : 'kilometers' );
   options.distance = turf.length(route, {units: units});
   ui.distance.textContent = options.distance.toFixed(2);
