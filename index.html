@@ -30,6 +30,10 @@
           <p id="distance">...</p>
       </div>
       <div class="stat">
+          <p>Avg. Speed</p>
+          <p id="avg">...</p>
+      </div>
+      <div class="stat">
           <p>Max Speed</p>
           <p id="max">...</p>
       </div>
@@ -39,9 +43,6 @@
         <p id="units">MPH</p>
     </div>
     <div class="buttons">
-      <div class="buttons-row">
-        <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">MPH</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">KPH</button>
-      </div>
       <button id="toggle" onclick="toggleClick()" class="button start">🔑 Start</button>
     </div>
     <div id="nav-menu" class="overlay">
@@ -54,7 +55,9 @@
     <a href="#">About</a>
     <a href="#">Contact</a>
     <br>
-    <br>
+    <div class="buttons-row">
+      <button id="mph" onclick="toggleUnits('mph')" class="button-toggle left active">MPH</button><button id="kph" onclick="toggleUnits('kph')" class="button-toggle right">KPH</button>
+    </div>
     <br>
     <a onclick="resetStats()">Reset Stats</a>
   </div>
