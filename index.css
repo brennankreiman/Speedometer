@@ -74,6 +74,7 @@ ul {
   justify-content: center;
 }
 .button-toggle {
+  background-color: ivory;
   border: 1px #ccc;
   font-size: 24px;
   overflow: visible;
