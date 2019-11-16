@@ -4,7 +4,7 @@ const units = {
 }
 const options = {
   center: [],
-  map: '',
+  map: null,
   wakeLock: null,
   watchId: null,
   speedUnit: units.mph,
@@ -46,7 +46,7 @@ const closeNav = () => {
   document.getElementById("nav-menu").style.width = "0%";
   document.getElementById("map").style.display = "none";
   document.getElementById("menu-content").style.display = "block";
-  if(options.map != null) {
+  if(options.map !== null) {
       options.map.remove();
       options.map = null;
 
@@ -160,7 +160,7 @@ const showMap = () => {
         options.map = L.map('map').setView(options.center, 13);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY29nd29ybGRtYXAiLCJhIjoiN3Vmb1FXTSJ9.HDCxpYrUAFQoc6u8sY-Hnw', {
                 maxZoom: 18,
-                attribution: ' <div  class="attr">Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                attribution: ' <div style="font-size:8px">Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
                     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
                     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a></div>',
                 id: 'mapbox.light'
