@@ -21,8 +21,10 @@ const route =  {
 };
 
 const setCenter = (position) => {
-    options.center = [position.coords.latitude.toFixed(6), position.coords.longitude.toFixed(6)];
     document.querySelector('#view-route').style.display = 'block';
+    // Lat long for center geoJSON is the opposite
+    options.center = [position.coords.latitude, position.coords.longitude];
+    console.log(options.center);
 }
 const avgArray = [];
 const ui = {
@@ -140,16 +142,17 @@ const watchPosition = (position) => {
         )
         ||
         (
-            route.geometry.coordinates[route.geometry.coordinates.length-1][0] !== position.coords.longitude.toFixed(6)
-            && route.geometry.coordinates[route.geometry.coordinates.length-1][1] !== position.coords.latitude.toFixed(6)
+            route.geometry.coordinates[route.geometry.coordinates.length-1][1] !== parseFloat(position.coords.longitude)
+            && route.geometry.coordinates[route.geometry.coordinates.length-1][0] !== parseFloat(position.coords.latitude)
         )
     ) {
-      route.geometry.coordinates.push([position.coords.latitude.toFixed(6), position.coords.longitude.toFixed(6)]);
+      route.geometry.coordinates.push([parseFloat(position.coords.longitude), parseFloat(position.coords.latitude)]);
   }
   let units = (ui.mph.classList.contains('active') ? 'miles' : 'kilometers' );
   options.distance = turf.length(route, {units: units});
   ui.distance.textContent = options.distance.toFixed(2);
   ui.avg.textContent = (options.avg  * options.speedUnit).toFixed(2);
+  console.log(route);
 };
 const showMap = () => {
     let menu = document.querySelector('#menu-content');
@@ -165,6 +168,7 @@ const showMap = () => {
                     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a></div>',
                 id: 'mapbox.light'
             }).addTo(options.map);
+            console.log(route);
         L.geoJSON(route).addTo(options.map);
     }
 }
