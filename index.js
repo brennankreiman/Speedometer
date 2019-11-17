@@ -132,7 +132,7 @@ const watchPosition = (position) => {
     ui.max.textContent = Math.round(options.max * options.speedUnit);
   }
   avgArray.push(position.coords.speed);
-  options.avg = avgArray.reduce((a, b) => a + b, 0);
+  options.avg = avgArray.reduce((a, b) => a + b, 0) / avgArray.length;
 
   if (
         (
