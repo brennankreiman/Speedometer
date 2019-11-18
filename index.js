@@ -21,10 +21,8 @@ const route =  {
 };
 
 const setCenter = (position) => {
-    document.querySelector('#view-route').style.display = 'block';
     // Lat long for center geoJSON is the opposite
     options.center = [position.coords.latitude, position.coords.longitude];
-    console.log(options.center);
 }
 const avgArray = [];
 const ui = {
@@ -42,6 +40,7 @@ const ui = {
 const openNav = () => {
   document.getElementById("nav-menu").style.width = "100%";
   navigator.geolocation.getCurrentPosition(setCenter);
+  document.querySelector('#view-route').style.display = 'block';
 };
 
 const closeNav = () => {
@@ -142,17 +141,16 @@ const watchPosition = (position) => {
         )
         ||
         (
-            route.geometry.coordinates[route.geometry.coordinates.length-1][1] !== parseFloat(position.coords.longitude)
-            && route.geometry.coordinates[route.geometry.coordinates.length-1][0] !== parseFloat(position.coords.latitude)
+            route.geometry.coordinates[route.geometry.coordinates.length-1][1] !== Number(position.coords.longitude)
+            && route.geometry.coordinates[route.geometry.coordinates.length-1][0] !== Number(position.coords.latitude)
         )
     ) {
-      route.geometry.coordinates.push([parseFloat(position.coords.longitude), parseFloat(position.coords.latitude)]);
+      route.geometry.coordinates.push([Number(position.coords.longitude), Number(position.coords.latitude)]);
   }
   let units = (ui.mph.classList.contains('active') ? 'miles' : 'kilometers' );
   options.distance = turf.length(route, {units: units});
   ui.distance.textContent = options.distance.toFixed(2);
   ui.avg.textContent = (options.avg  * options.speedUnit).toFixed(2);
-  console.log(route);
 };
 const showMap = () => {
     let menu = document.querySelector('#menu-content');
@@ -168,7 +166,6 @@ const showMap = () => {
                     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a></div>',
                 id: 'mapbox.light'
             }).addTo(options.map);
-            console.log(route);
         L.geoJSON(route).addTo(options.map);
     }
 }
@@ -185,7 +182,7 @@ console.log(`%c
     | |__  _| | _____   ___ ___  _ __ ___  _ __  _   _| |_ ___ _ __
     | '_ \\| | |/ / _ \\ / __/ _ \\| '_  '_ \\| '_ \\| | | | __/ _ \\ '__|
     | |_) | |   <  __/| (_| (_) | | | | | | |_) | |_| | ||  __/ |
-    |_.__/|_|_|\\_\\___(_)___\\___/|_| |_| |_| .__/ \\__,_|\\__\\___|_|
+    |_.__/|_|_|\\_\\___||____\\___/|_| |_| |_| .__/ \\__,_|\\__\\___|_|
                                          | |
                                          |_|
                         o__

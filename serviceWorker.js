@@ -1,5 +1,5 @@
-const version = 57700000099099;
-const cachePrefix = 'speedometer-';
+const version = 66600000099099;
+const cachePrefix = 'computer.bike-';
 const staticCacheName = `${cachePrefix}static-${version}`;
 const expectedCaches = [staticCacheName];
 
